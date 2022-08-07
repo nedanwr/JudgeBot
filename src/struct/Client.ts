@@ -5,20 +5,15 @@ import {
     Partials
 } from "discord.js";
 import { ConfigManager } from "../managers/config";
-import { logger } from "../logger";
-
-type ClientOptions = {
-    token: string;
-    prefix: string;
-}
 
 export class JudgeBot extends Client {
     commands = new Collection<string, any>();
     events = new Collection<string, any>();
 
     public readonly config: ConfigManager;
+    public readonly prefix: string;
 
-    public constructor(options: ClientOptions) {
+    public constructor() {
         super({
             partials: [
                 Partials.User,
@@ -51,12 +46,7 @@ export class JudgeBot extends Client {
                 IntentsBitField.Flags.GuildVoiceStates
             ]
         });
-        this
-            .login(options.token)
-            .catch((error: any | unknown) => {
-                logger.error(error.message);
-                process.exit(1);
-            });
         this.config = new ConfigManager(this);
+        this.prefix = this.config.botSettings().prefix;
     }
 }
