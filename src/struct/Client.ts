@@ -4,6 +4,7 @@ import {
     IntentsBitField,
     Partials
 } from "discord.js";
+import { ConfigManager } from "../managers/config";
 import { logger } from "../logger";
 
 type ClientOptions = {
@@ -14,6 +15,8 @@ type ClientOptions = {
 export class JudgeBot extends Client {
     commands = new Collection<string, any>();
     events = new Collection<string, any>();
+
+    public readonly config: ConfigManager;
 
     public constructor(options: ClientOptions) {
         super({
@@ -54,5 +57,6 @@ export class JudgeBot extends Client {
                 logger.error(error.message);
                 process.exit(1);
             });
+        this.config = new ConfigManager(this);
     }
 }
