@@ -1,0 +1,10 @@
+{
+  "name": "@judgebot/bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A self-hosted, fully-customizable moderation bot",
+  "main": "build/index.js",
+  "repository": "git@github.com:nedanwr/JudgeBot.git",
+  "author": "Naveed Ali Anwar <hello@naveedalianwar.com>",
+  "license": "MIT"
+}
